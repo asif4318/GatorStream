@@ -1,5 +1,9 @@
 import yt_dlp
 import os
+import whisper
+import multiprocessing
+
+model = whisper.load_model("tiny.en")
 
 
 # Gets the video id from YouTube URL
@@ -24,3 +28,17 @@ def download_video(url, folder):
     with yt_dlp.YoutubeDL(ytdl_format_options) as ydl:
         error_code = ydl.download(url)
         return os.path.join(folder, get_video_id(url)+'.m4a')
+
+
+def run_transcription(path: str):
+    res = model.transcribe(path)
+    print(res['text'])
+
+
+def whisper_transcribe(url: str):
+    download_video(url, "audio")
+    audio_path = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), download_video(url, "audio"))
+    res = model.transcribe(audio_path)
+    print(res['text'])
+    # TODO: Upload the transcription to Database/Storage
