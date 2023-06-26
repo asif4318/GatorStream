@@ -36,7 +36,6 @@ def run_transcription(path: str):
 
 
 def whisper_transcribe(url: str):
-    download_video(url, "audio")
     audio_path = os.path.join(
         os.path.dirname(os.path.abspath(__file__)), download_video(url, "audio"))
     res = model.transcribe(audio_path)
