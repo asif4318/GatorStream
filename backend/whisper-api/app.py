@@ -15,7 +15,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = whisper.load_model("base")
+model = whisper.load_model("tiny.en")
+
+
+@app.get("/")
+async def root():
+    return "Go to /docs for API documentation and usage"
 
 
 # Just a test endpoint to see if the API is up
@@ -24,6 +29,7 @@ async def main():
     return {"message": "pong"}
 
 
+# Transcribe a video provided the youtube URL
 @app.get("/transcribe")
 async def transcribe(url: str):
     id = util.get_video_id(url)
