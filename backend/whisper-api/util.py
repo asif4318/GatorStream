@@ -41,3 +41,5 @@ def whisper_transcribe(url: str):
     res = model.transcribe(audio_path)
     print(res['text'])
     # TODO: Upload the transcription to Database/Storage
+    # Cleanup
+    os.remove(audio_path)
