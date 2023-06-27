@@ -30,11 +30,6 @@ def download_video(url, folder):
         return os.path.join(folder, get_video_id(url)+'.m4a')
 
 
-def run_transcription(path: str):
-    res = model.transcribe(path)
-    print(res['text'])
-
-
 def whisper_transcribe(url: str):
     audio_path = os.path.join(
         os.path.dirname(os.path.abspath(__file__)), download_video(url, "audio"))
