@@ -23,6 +23,7 @@ function GetStyle(style: ButtonStyle): string {
     }
 }
 
+
 const Button = ({ callbackFunc = () => { }, text = "", style = ButtonStyle.Primary }: ClickableButton) => {
     return (
         <button onClick={() => callbackFunc()} className={GetStyle(style)}>

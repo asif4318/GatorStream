@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import GroupChatPage from "./pages/GroupChat.page.tsx";
+import HomePage from "./pages/HomePage.page.tsx";
+import NavBar from "./components/NavBar.tsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/group/:roomID",
     element: <GroupChatPage />
+  },
+  {
+    path: "/home",
+    element: <HomePage />
   }
 ]);
 
@@ -26,7 +32,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       domain={import.meta.env.VITE_AUTH_DOMAIN}
       clientId={import.meta.env.VITE_AUTH_CLIENTID}
       authorizationParams={{
-        redirect_uri: window.location.origin,
+        redirect_uri: window.location.origin + "/home",
       }}
     >
       <RouterProvider router={router} />
