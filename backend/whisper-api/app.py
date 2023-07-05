@@ -1,5 +1,5 @@
 import os
-from fastapi import FastAPI
+from fastapi import BackgroundTasks, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from multiprocessing import Process
 import util
@@ -29,8 +29,7 @@ async def main():
 
 # Transcribe a video provided the youtube URL
 @app.get("/transcribe")
-async def transcribe(url: str):
+async def transcribe(url: str, background_tasks: BackgroundTasks):
     # Create a process and execute it in parallel so an immediate API response is returned
-    res = Process(None, util.whisper_transcribe, args=[url])
-    res.start()
-    return {"message": "Received YouTube URL and currently transcribing!"}
+    background_tasks.add_task(util.whisper_transcribe, url=url)
+    return {"message": "Received YouTube URL and currently transcribing in background!"}

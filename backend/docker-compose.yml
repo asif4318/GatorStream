@@ -1,0 +1,9 @@
+services:
+  webrtc:
+    build: "./webrtc-server"
+    ports: 
+      - "5000:8080"
+  whisper-api:
+    build: "./whisper-api"
+    ports: 
+      - "8000:8000"
