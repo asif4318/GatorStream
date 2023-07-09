@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import "./HomePage.page.css";
 import thumbnail from "../assets/thumbnail.png";
+import { Link } from 'react-router-dom';
 
 
 const HomePage = () => {
@@ -12,7 +13,7 @@ const HomePage = () => {
                 <div className="horizontal-scroll-list">
                     <h2 className="font-extrabold">Classes</h2>
                     <div className="thumbnails-container">
-                        <img src={thumbnail} />
+                        <Link to="/Class"><img src={thumbnail} /></Link>
                         <img src={thumbnail} />
                         <img src={thumbnail} />
                         <img src={thumbnail} />

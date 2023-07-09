@@ -9,7 +9,9 @@ import {
 import "./index.css";
 import GroupChatPage from "./pages/GroupChat.page.tsx";
 import HomePage from "./pages/HomePage.page.tsx";
+import AboutUs from "./pages/AboutUs.page.tsx"
 import NavBar from "./components/NavBar.tsx";
+import ClassPage from "./pages/Class.page.tsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <HomePage />
+  },
+  {
+    path: "/Class",
+    element: <ClassPage />
+  },
+  {
+    path: "/About",
+    element: <AboutUs />
   }
 ]);
 
