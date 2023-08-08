@@ -1,0 +1,27 @@
+const User = require('../models/userModel')
+const Class = require('../models/classModel')
+
+
+
+const addVideo = async (req, res) => {
+  const {className, userID, videoLink, transcript, summary} = req.body;
+  try {
+
+    const user = await User.findOne({userID: userID});
+    const foundClass = await Class.findOne({className: className});  
+    if(!user) {
+        throw new Error('User not found')
+    }
+    if(!foundClass){
+        throw new Error('Class not found')
+    }
+    foundClass.videos.push({link: videoLink, transcript: transcript, summary: summary})
+    await foundClass.save();
+    res.status(200).json({message: 'Video added'})
+    }catch (error) {
+    res.status(401).json({error: error.message})
+  }
+}
+
+module.exports = {addVideo};
+
