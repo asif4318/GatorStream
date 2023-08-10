@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import io, { Socket } from "socket.io-client";
+import { Button } from '@chakra-ui/react'
 
 const GroupChat = () => {
     const userVideo = useRef<HTMLVideoElement>(null);
@@ -163,9 +164,9 @@ const GroupChat = () => {
 
     return (
         <div>
-            <video controls style={{ maxWidth: "80%" }} autoPlay ref={userVideo} />
-            <video controls style={{ maxWidth: "80%" }} autoPlay ref={partnerVideo} />
-            <button onClick={shareScreen}>Share screen</button>
+            <video controls style={{ maxHeight: "45%" }} autoPlay ref={userVideo} />
+            <video controls style={{ maxHeight: "45%" }} autoPlay ref={partnerVideo} />
+            <Button colorScheme="blue" className="m-4" onClick={shareScreen}>Share screen</Button>
         </div>
     );
 };

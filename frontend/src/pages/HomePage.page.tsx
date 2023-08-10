@@ -1,37 +1,40 @@
-import React from 'react';
 import NavBar from '../components/NavBar';
 import "./HomePage.page.css";
-import thumbnail from "../assets/thumbnail.png";
 import { Link } from 'react-router-dom';
+import { Card, CardBody } from "@chakra-ui/react"
+import DefaultData from "../models/DefaultData"
 
 
 const HomePage = () => {
+    var defaultData = new DefaultData();
     return (
-        <div>
+        <div className='bg-slate-300'>
             <NavBar pageTitle="Home" />
             <div className="home-page">
                 <div className="horizontal-scroll-list">
-                    <h2 className="font-extrabold">Classes</h2>
-                    <div className="thumbnails-container">
-                        <Link to="/Class"><img src={thumbnail} /></Link>
-                        <img src={thumbnail} />
-                        <img src={thumbnail} />
-                        <img src={thumbnail} />
-                        <img src={thumbnail} />
+                    <h2 className="font-extrabold flex-auto">Classes</h2>
+                    <div className="align-middle justify-center mx-auto">
+                        {
+                            defaultData.classes.map(element => {
+                                return <div className='p-4'>
+                                    <Link to={"/Class/" + element.id}>
+                                        <Card>
+                                            <CardBody>
+                                                {element.title}
+                                            </CardBody>
+                                        </Card>
+                                    </Link>
+                                </div>
+                            })
+                        }
                         {/* Add more thumbnails as needed */}
                     </div>
                 </div>
-                <div className="vertical-scroll-list">
-                    <h2 className='font-extrabold'>Continue Watching</h2>
-                    <ul className="elements-list">
-                        <li>Element 1</li>
-                        <li>Element 2</li>
-                        <li>Element 3</li>
-                        <li>Element 4</li>
-                        <li>Element 5</li>
-                        {/* Add more elements as needed */}
-                    </ul>
-                </div>
+                <h2 className='font-extrabold'>Continue Watching</h2>
+                <Link to={"/Video/" + defaultData.classes[0].videos[0].getYouTubeId()}>
+                    <img src={defaultData.classes[0].videos[0].getThumbnailUrl()} className='h-1/3'></img>
+                </Link>
+                {/* Add more elements as needed */}
             </div>
         </div>
     );

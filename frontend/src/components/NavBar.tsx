@@ -14,23 +14,27 @@ const NavBar = ({ pageTitle }: NavBarProps) => {
     return (
         <div className="bg-black py-3 px-2 m-0 text-white transition ease-in-out delay-150 duration-1000">
             <header className="menu-bar">
-                <h1 className="ml-1">{pageTitle}</h1>
-                <button className="mr-1" onClick={() => setShowMenu(!showMenu)}><AiOutlineMenu /></button>
+                <h1 className="ml-1" style={{ fontSize: 28 }}>{pageTitle}</h1>
+                <button className="mr-1" onClick={() => setShowMenu(!showMenu)}><AiOutlineMenu size="42" /></button>
             </header>
             <div>
                 {/* Display the menu if showMenu is true, else  don't display it */}
                 <ul style={{ display: showMenu ? "block" : "none" }}>
                     <li>
-                        <Link to="/home">Home</Link>
+                        <Link to="/home" style={{ fontSize: "24px" }}>Home</Link>
                     </li>
                     <li>
-                        <Link to="/groups">Groups</Link>
+                        <Link to="/groups" style={{ fontSize: "24px" }}>Groups</Link>
                     </li>
-                    <li>Notes</li>
+                    <li style={{ fontSize: "24px" }}>
+                        <Link to="/Notes">
+                            Notes
+                        </Link>
+                    </li>
                     <li>
-                        <Link to="/About">About Us</Link>
+                        <Link to="/About" style={{ fontSize: "24px" }}>About Us</Link>
                     </li>
-                    <li onClick={() => logout()}><a href="">Logout</a></li>
+                    <li onClick={() => logout()}><a href="/" style={{ fontSize: "24px" }}>Logout</a></li>
                 </ul>
             </div>
         </div >

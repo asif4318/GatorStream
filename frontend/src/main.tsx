@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { ChakraProvider } from '@chakra-ui/react'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -12,6 +13,8 @@ import HomePage from "./pages/HomePage.page.tsx";
 import AboutUs from "./pages/AboutUs.page.tsx"
 import ClassPage from "./pages/Class.page.tsx";
 import GroupsPage from "./pages/GroupsPage.tsx";
+import VideoPage from "./pages/VideoPage.tsx";
+import NotesPage from "./pages/NotesPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -31,12 +34,20 @@ const router = createBrowserRouter([
     element: <GroupsPage />
   },
   {
-    path: "/Class",
+    path: "/Class/:classId",
     element: <ClassPage />
   },
   {
     path: "/About",
     element: <AboutUs />
+  },
+  {
+    path: "/Video/:videoId",
+    element: <VideoPage />
+  },
+  {
+    path: "/Notes",
+    element: <NotesPage />
   }
 ]);
 
@@ -49,7 +60,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         redirect_uri: window.location.origin + "/home",
       }}
     >
-      <RouterProvider router={router} />
+      <ChakraProvider>
+        <RouterProvider router={router} />
+      </ChakraProvider>
     </Auth0Provider>
   </React.StrictMode>
 );

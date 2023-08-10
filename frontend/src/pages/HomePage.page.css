@@ -30,10 +30,9 @@
   scroll-snap-type: x mandatory;
 }
 
-.thumbnails-container img {
-  flex-shrink: 0;
-  width: 100px;
-  height: 100px;
+.thumbnails-container Link img {
+  flex-shrink: 20;
+  max-width: 20%;
   margin-right: 10px;
   scroll-snap-align: start;
 }
